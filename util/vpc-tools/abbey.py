@@ -559,9 +559,13 @@ def create_ami(instance_id, name, description):
                 time.sleep(AWS_API_WAIT_TIME)
 
                 # Get versions from the instance.
+                print("img_id " + instance_id)
+                print("instance_id " + instance_id)
                 tags = ec2.get_all_tags(filters={'resource-id': instance_id})
                 for tag in tags:
+                    print("tag {} {}".format(tag.name, tag.value))
                     if tag.name.startswith('version:'):
+                        print("adding tag {} {}".format(tag.name, tag.value))
                         img.add_tag(tag.name, tag.value)
                         time.sleep(AWS_API_WAIT_TIME)
                 break
