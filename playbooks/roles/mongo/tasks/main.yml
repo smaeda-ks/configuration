@@ -107,6 +107,15 @@
 - name: start mongo service
   service: name=mongod state=started
   tags:
+#    - manage
+#    - manage:start
+
+- name:
+  command: >
+    mongod --fork --config /etc/mongod.conf
+  tags:
+    - install
+    - install:configuration
     - manage
     - manage:start
 
